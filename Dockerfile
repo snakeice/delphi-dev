@@ -9,10 +9,12 @@ RUN apt-get -y update \
     zlib1g-dev \
     libcurl3 \
     libcurl4-gnutls-dev \
+    apt-utils \
     xterm \
     libpq5 \
     libmongoc-1.0-0 \
-    ca-certificates \   
+    ca-certificates \  
+    apt-transport-https \ 
     && ln -s /usr/lib/x86_64-linux-gnu/libpq.so.5 /usr/lib/x86_64-linux-gnu/libpq.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so.0 /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libbson-1.0.so.0 /usr/lib/x86_64-linux-gnu/libbson-1.0.so \
