@@ -12,11 +12,16 @@ RUN apt-get -y update \
     xterm \
     libpq5 \
     libmongoc-1.0-0 \
+    ca-certificates \   
     && ln -s /usr/lib/x86_64-linux-gnu/libpq.so.5 /usr/lib/x86_64-linux-gnu/libpq.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so.0 /usr/lib/x86_64-linux-gnu/libmongoc-1.0.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libbson-1.0.so.0 /usr/lib/x86_64-linux-gnu/libbson-1.0.so \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 9DA31620334BD75D9DCB49F368818C72E52529D4  \
+    && echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-4.0.list \
+    && apt update \
+    && apt-get install -y mongodb-org-tools \
     && apt-get -y autoremove \
-    && apt-get -y autoclean
+    && apt-get -y autoclean 
 ADD . /tmp
 RUN cd tmp \
     && curl -L \
@@ -45,7 +50,7 @@ RUN cd tmp \
     && sed -i -e 's/\r$//' ~/start.sh \
     && chmod +x ~/start.sh \
     && ln -s ~/start.sh /usr/bin/start \
-    && rm -rf /tmp/*
+    && rm -rf /tmp/* 
 WORKDIR ~/
 EXPOSE 64211
 ENV RAD_SERVER_RESOURCES_FILES=/etc/ems/objrepos/
