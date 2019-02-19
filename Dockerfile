@@ -38,7 +38,7 @@ RUN cd tmp \
     && ./ib_install_linux_x86_64.bin -i silent -r /tmp/output || true \
     && cat output \
     && tar -xzvf paserver.tar.gz \
-    && mv PAServer-19.0 /root/PAServer \
+    && mv PAServer-20.0 /root/PAServer \
     && ln -s /root/PAServer/paserver /usr/bin/paserver \
     && tar -xzvf emsserver.tar.gz \
     && cd emsserver \ 
